@@ -1,9 +1,10 @@
 from __future__ import annotations
 
 from pathlib import Path
-
+from converter.input.loader import InputLoader
 from huggingface_hub import model_info
 from converter.models.conversion_job import ConversionJob
+from transformers import AutoConfig
 
 
 class Inspector:
@@ -14,7 +15,8 @@ class Inspector:
 
     def inspect(self, job: ConversionJob) -> ConversionJob:
 
-        source = job.source
+        source = InputLoader.load(job.source)
+        job.source = str(source)
 
         # ----------------------------------------------------------
         # Local Path
@@ -62,23 +64,19 @@ class Inspector:
         # Framework detection
         # -----------------------------
 
-        if "pytorch" in tags:
-            job.framework = "pytorch"
+        job.framework = "pytorch"
 
-        elif "tensorflow" in tags:
+        if "tensorflow" in tags:
             job.framework = "tensorflow"
 
         # -----------------------------
         # Architecture detection
         # -----------------------------
 
-        architectures = (
-            info.config.get("architectures", [])
-            if info.config
-            else []
+        config = AutoConfig.from_pretrained(
+            job.source,
+            trust_remote_code=True,
         )
 
-        if architectures:
-            job.architecture = architectures[0]
-
-        return job
+        if hasattr(config, "architectures") and config.architectures:
+            job.architecture = config.architectures[0]

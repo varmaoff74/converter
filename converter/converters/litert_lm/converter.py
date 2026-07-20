@@ -41,4 +41,6 @@ class LiteRTLMConverter(BaseConverter):
         if job.output_path:
             return Path(job.output_path)
 
-        return Path("litert_output")
+        model_name = str(job.source).split("/")[-1].replace(".", "_")
+
+        return Path("litert_outputs") / model_name

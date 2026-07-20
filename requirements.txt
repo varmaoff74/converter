@@ -1,55 +1,76 @@
 # ==========================================
-# Core Utilities
-# ==========================================
+# # Core Utilities
+# # ==========================================
 
-numpy
-typing_extensions
-tqdm
-pyyaml
-packaging
-rich
-click
+# numpy
+# typing_extensions
+# tqdm
+# pyyaml
+# packaging
+# rich
+# click
 
-# ==========================================
-# Hugging Face
-# ==========================================
+# # ==========================================
+# # Hugging Face
+# # ==========================================
 
-huggingface_hub
-transformers
-safetensors
-tokenizers
-accelerate
+# huggingface_hub
+# transformers
+# safetensors
+# tokenizers
+# accelerate
 
-# ==========================================
-# PyTorch
-# ==========================================
+# # ==========================================
+# # PyTorch
+# # ==========================================
 
+# torch
+# torchvision
+# torchaudio
+
+# # ==========================================
+# # TensorFlow
+# # ==========================================
+
+# tensorflow
+
+# # ==========================================
+# # LiteRT
+# # ==========================================
+
+# litert-torch-nightly
+# litert-torch
+
+# # ==========================================
+# # Image Processing
+# # ==========================================
+
+# pillow
+
+# # ==========================================
+# # Utilities
+# # ==========================================
+
+# requests
+# psutil
+
+
+
+
+# Core
 torch
 torchvision
-torchaudio
+transformers
+huggingface_hub
+safetensors
 
-# ==========================================
-# TensorFlow
-# ==========================================
-
-tensorflow
-
-# ==========================================
 # LiteRT
-# ==========================================
-
-litert-torch-nightly
 litert-torch
+litert-converter
+ai-edge-litert
 
-# ==========================================
-# Image Processing
-# ==========================================
-
-pillow
-
-# ==========================================
 # Utilities
-# ==========================================
-
+numpy
+tqdm
 requests
-psutil
+PyYAML

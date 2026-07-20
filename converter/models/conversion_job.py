@@ -99,6 +99,12 @@ class ConversionJob:
     metadata: Dict[str, Any] = field(default_factory=dict)
 
     # ------------------------------------------------------------------
+    # Device information
+    # ------------------------------------------------------------------
+
+    device_info: Dict[str, Any] = field(default_factory=dict)
+
+    # ------------------------------------------------------------------
     # Helper Methods
     # ------------------------------------------------------------------
 
@@ -141,4 +147,5 @@ class ConversionJob:
             "metadata": self.metadata,
             "validation_results": self.validation_results,
             "options": self.options,
+            "device_info": self.device_info,
         }

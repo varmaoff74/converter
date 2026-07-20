@@ -1,0 +1,69 @@
+python run_litert.py 2>/dev/null ----- to run without the logs.
+or this way 
+import os
+import sys
+
+old_stderr = sys.stderr
+sys.stderr = open(os.devnull, "w")
+
+from litert_lm import Engine
+
+sys.stderr.close()
+sys.stderr = old_stderr
+
+Google provides the conversion tools. Our application automates the decision-making around them.
+
+Think of it like this:
+
+Google gives:
+
+LiteRT converters
+    ↓
+"Here are APIs to convert models"
+
+But the user still needs to know:
+
+Which converter should I use? (LiteRT-Torch, LiteRT-LM, TensorFlow)
+Is my model supported?
+What architecture is this?
+What quantization should I choose?
+Should I use CPU/GPU/NPU delegate?
+How do I validate the converted model?
+Did conversion reduce performance or accuracy?
+How do I repeat this process for hundreds of models?
+
+Our application provides:
+
+Any HuggingFace model
+        ↓
+Automatic inspection
+        ↓
+Backend selection
+        ↓
+Optimization strategy
+        ↓
+Conversion
+        ↓
+Validation
+        ↓
+Deployment-ready LiteRT model
+
+The analogy:
+
+PyTorch provides torch.compile(), but tools like Hugging Face Optimum automate optimization workflows.
+Docker provides container technology, but Kubernetes manages deployment decisions.
+LLVM provides compilers, but build systems automate the process.
+
+Our application is an automation and intelligence layer on top of LiteRT, not a replacement for LiteRT.
+
+The value is especially when someone has:
+
+thousands of Hugging Face models
+different hardware targets
+non-expert users who don't know LiteRT internals
+
+They don't want to learn every converter API. They want:
+
+"Give me my model, give me the optimized version for my device."
+
+That's the problem we are solving.

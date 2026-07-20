@@ -69,4 +69,6 @@ class TensorFlowConverter(BaseConverter):
         if job.model_path is not None:
             return job.model_path.with_suffix(".tflite")
 
-        return Path("model.tflite")
+        model_name = str(job.source).split("/")[-1].replace(".", "_")
+
+        return Path("litert_outputs") / model_name / "model.tflite"

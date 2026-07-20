@@ -47,6 +47,18 @@ class BaseConverter(ABC):
         supplied conversion job.
         """
         return True
+    
+        def get_output_directory(self, job: ConversionJob) -> Path:
+            if job.output_path:
+                return Path(job.output_path)
+
+            model_name = (
+                str(job.source)
+                .split("/")[-1]
+                .replace(".", "_")
+            )
+
+            return Path("litert_outputs") / model_name
 
     def __str__(self) -> str:
         return self.name
